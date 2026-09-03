@@ -1,15 +1,17 @@
 # Light harness
 
-For product repos that already have a contract (`AGENTS.md`, stack rules, tests).
-Examples: AlexY OS, GitCourse, Lab, BrandOSS, ui8px-cli, FastyGo UI.
+For product repos that already have a contract (`AGENTS.md`, rules, tests).
 
-Copy this directory to `<repo>/.sdlc/`. Then overlay Cursor files — see
-`../README.md`.
+Install:
+
+```text
+npx @ui8kit/uxdx sdlc --level light
+```
 
 ## Per change
 
-1. `mkdir -p .sdlc/changes/<slug>`
-2. Copy `plan.md` into that folder and fill it.
-3. Add `intent.md` only if the origin is unclear (incident, external request).
-4. Skip `spec.md` unless you are changing published IA or a user-visible contract.
-5. Run the repo's existing verify command before calling the task done.
+1. `bash .sdlc/sdlc.sh start <slug>` (or `mkdir -p .sdlc/changes/<slug>`).
+2. Fill `plan.md` in that folder.
+3. Add `intent.md` only if the origin is unclear.
+4. Skip `spec.md` unless you are changing a published or user-visible contract.
+5. Run the repo’s existing verify command before calling the task done.

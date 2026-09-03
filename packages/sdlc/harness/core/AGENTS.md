@@ -1,7 +1,7 @@
 <!-- sdlc-harness:begin -->
 ## SDLC harness (core)
 
-This repo uses the **core** pack (`.harness-sdlc/core` → `.sdlc/`).
+This repo uses the **core** pack from [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx) (`.sdlc/`).
 
 - Boundary, API, and policy changes: `intent.md` + short `spec.md` + `plan.md`.
 - Mechanical fixes: `plan.md` only, still name the invariant you must not break.

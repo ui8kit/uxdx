@@ -12,6 +12,6 @@ repo, for example:
 Keep approval prompts off the build hot path so parallel sessions are not
 serialized. Production gates belong at deploy, not on every file save.
 
-Example PreToolUse shape lives in the playbook
-(`.manual/sdlc-en/10-hooks-as-approval-gates.md`). Do not enable managed-only
-enterprise settings unless you actually operate MDM.
+Example PreToolUse shape lives in the public playbook
+([hooks as approval gates](https://academy.claude.com/courses/ai-native-sdlc-playbook/hooks-as-approval-gates)).
+Do not enable managed-only enterprise settings unless you actually operate MDM.

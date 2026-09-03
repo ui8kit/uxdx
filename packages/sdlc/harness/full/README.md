@@ -1,9 +1,12 @@
 # Full harness
 
-For the portable Codex path and high-stakes operators.
-Examples: SiteStarter, GoBackend, SvelteCMS, YPanel.
+For shipping products and high-stakes operator surfaces.
 
-Copy this directory to `<repo>/.sdlc/`. Overlay Cursor files — `../README.md`.
+Install:
+
+```text
+npx @ui8kit/uxdx sdlc --level full
+```
 
 Solo adaptation: no MDM, no weekly committee. You still accept `spec.md` and
 `plan.md`, merge PRs, and authorize production.
@@ -20,4 +23,4 @@ Solo adaptation: no MDM, no weekly committee. You still accept `spec.md` and
 
 ## Per change
 
-`mkdir -p .sdlc/changes/<slug>` and copy `intent.md`, `spec.md`, `plan.md`.
+`bash .sdlc/sdlc.sh start <slug>` (copies `intent.md`, `spec.md`, `plan.md`).

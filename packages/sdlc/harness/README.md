@@ -1,18 +1,28 @@
 # SDLC harness packs (solo)
 
-Copy-paste packs for the AI-native loop, sized for one operator. Source method:
-[`.manual/sdlc-en`](../.manual/sdlc-en/README.md). Which product gets which pack:
-[`.project/sdlc-scope.md`](../.project/sdlc-scope.md).
+Copy-ready packs for the AI-native loop, sized for one operator. Method:
+[The AI-Native SDLC Playbook](https://academy.claude.com/courses/ai-native-sdlc-playbook)
+(public course). Map `plan.md` / `CLAUDE.md` onto Cursor Plan mode and
+`AGENTS.md`.
 
-Later this tree can move to its own repo or a CLI (`sdlc init --level full`).
-Until then the consumer copies **one** pack into **`.sdlc/`**.
+This tree is the source of truth. Install a pack with the published CLI:
+
+```text
+npx @ui8kit/uxdx sdlc --level light|core|full
+```
+
+That copies **one** pack into the target repo’s `.sdlc/` and, unless
+`--no-install`, overlays Cursor rules/skills and merges `AGENTS.md`.
+Never stack two levels. Do not copy this tree by hand.
+
+Package: [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx)
 
 ## How it works
 
 ```
-hinddy/brainstorm/.harness-sdlc/<level>/     (this gym)
+@ui8kit/uxdx  packages/sdlc/harness/<level>/
         │
-        │  copy (do not merge levels)
+        │  npx @ui8kit/uxdx sdlc --level <level>
         ▼
 your-repo/.sdlc/                             artifacts + overlay text
         │
@@ -23,9 +33,15 @@ your-repo/.sdlc/                             artifacts + overlay text
         └── cursor/rules/                    copy → .cursor/rules/
 ```
 
-1. Pick **full**, **core**, or **light** from `sdlc-scope.md`. Never stack two packs.
-2. Copy the pack directory contents into `<repo>/.sdlc/` (keep `manifest.yaml`).
-3. **Activate Cursor** (rules/skills are not loaded from `.sdlc` by default):
+1. Pick **full**, **core**, or **light**. Never stack two packs.
+2. Run `npx @ui8kit/uxdx sdlc --level <level>` (add `--dir` if needed).
+3. **Activate Cursor** is done by `sdlc.sh install` (default). To copy only:
+
+   ```text
+   npx @ui8kit/uxdx sdlc --level <level> --no-install
+   ```
+
+   then overlay yourself:
 
    ```bash
    mkdir -p .cursor/rules .cursor/skills
@@ -33,26 +49,29 @@ your-repo/.sdlc/                             artifacts + overlay text
    cp -R .sdlc/skills/* .cursor/skills/
    ```
 
-4. **AGENTS.md**: if the repo already has a product `AGENTS.md` (SiteStarter, YPanel, …), **append** a short pointer. Do not replace stack-contract text. If there is no root file, copy `.sdlc/AGENTS.md` to the repo root.
-5. For each change: copy `intent.md` / `spec.md` / `plan.md` into `.sdlc/changes/<slug>/` and fill them. Leave the pack-root files as templates.
-6. Existing product rules (`.cursor/rules/stack-contract.mdc`, …) stay. The harness adds SDLC rules; it does not own Codex IA.
+4. **AGENTS.md**: if the repo already has one, the install **appends** a
+   marked overlay. Do not replace product contract text. If there is no root
+   file, install writes `.sdlc/AGENTS.md` to the repo root.
+5. For each change: copy templates into `.sdlc/changes/<slug>/` (`sdlc.sh
+   start <slug>`) and fill them. Leave the pack-root files as templates.
+6. Existing product rules stay. The harness adds SDLC rules only.
 
-Human still merges. The agent writes artifacts and code; you accept `plan.md` before a large diff.
+Human still merges. The agent writes artifacts and code; you accept `plan.md`
+before a large diff.
 
 ## Levels
 
 | Pack | Use when | Artifacts | Extra |
 | --- | --- | --- | --- |
-| `light/` | Product on an existing contract; small blast radius | `plan.md` required; `intent.md` optional; skip `spec.md` unless IA changes | No evals, no maintain bands |
-| `core/` | Kernel, API, ARIA, shared library | `intent.md` + `plan.md`; compressed `spec.md` on boundary changes | Invariant skills; short `REVIEW.md` |
-| `full/` | Portable Codex path, YPanel, anything that ships + is pinned | Full chain including `spec.md` | `REVIEW.md`, `evals/` stub, `bands.yaml` stub |
+| `light/` | Product already has a contract; small blast radius | `plan.md` required; `intent.md` optional; skip `spec.md` unless the public contract changes | No evals, no maintain bands |
+| `core/` | Kernel, API, or shared library | `intent.md` + `plan.md`; short `spec.md` on boundary changes | Invariant skills; short `REVIEW.md` |
+| `full/` | Shipping product or high-stakes operator surface | Full chain including `spec.md` | `REVIEW.md`, `evals/` stub, `bands.yaml` stub |
 
-## Future CLI (not built)
+## Commands
 
-Suggested commands, matching `manifest.yaml` in each pack:
-
-- `sdlc init --level full` → copy pack to `.sdlc`, overlay rules/skills, patch root `AGENTS.md` between markers
-- `sdlc change start <slug>` → copy templates into `.sdlc/changes/<slug>/`
-- `sdlc change accept` → remind to commit artifacts with the diff
-
-Do not invent a second content REST or product kinds from this harness.
+```text
+npx @ui8kit/uxdx sdlc --level full
+bash .sdlc/sdlc.sh install
+bash .sdlc/sdlc.sh start <slug>
+bash .sdlc/sdlc.sh status
+```

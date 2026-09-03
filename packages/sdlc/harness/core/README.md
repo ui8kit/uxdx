@@ -1,9 +1,12 @@
 # Core harness
 
 For kernels, shared libraries, and high blast-radius contracts.
-Examples: FormSet, Framework, Panel, ui8kit/aria, Context.
 
-Copy this directory to `<repo>/.sdlc/`. Overlay Cursor files — `../README.md`.
+Install:
+
+```text
+npx @ui8kit/uxdx sdlc --level core
+```
 
 ## Per change
 

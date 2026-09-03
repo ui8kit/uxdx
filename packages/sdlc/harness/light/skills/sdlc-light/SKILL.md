@@ -2,7 +2,8 @@
 name: sdlc-light
 description: >-
   Light AI-native SDLC for a solo developer. Use when planning or implementing
-  work in a repo that copied .harness-sdlc/light into .sdlc. Write plan.md,
+  work in a repo whose `.sdlc` was installed with `@ui8kit/uxdx` at level
+  light. Write plan.md,
   skip spec.md unless IA changes, run existing verify commands.
 ---
 

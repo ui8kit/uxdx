@@ -1,7 +1,7 @@
 <!-- sdlc-harness:begin -->
 ## SDLC harness (full)
 
-This repo uses the **full** pack (`.harness-sdlc/full` → `.sdlc/`).
+This repo uses the **full** pack from [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx) (`.sdlc/`).
 
 Loop: accepted `intent.md` → `spec.md` → `plan.md` → diff + existing verify
 → PR against `.sdlc/REVIEW.md` → you merge. Optional later: `evals/` on
