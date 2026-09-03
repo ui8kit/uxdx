@@ -1,0 +1,15 @@
+level: light
+version: 1
+copy_to: .sdlc
+cursor:
+  rules: cursor/rules
+  skills: skills
+agents_md:
+  overlay: AGENTS.md
+  merge_markers:
+    begin: "<!-- sdlc-harness:begin -->"
+    end: "<!-- sdlc-harness:end -->"
+artifacts:
+  required: [plan.md]
+  optional: [intent.md]
+  skip_by_default: [spec.md]

@@ -1,0 +1,16 @@
+---
+description: Light SDLC — plan.md and existing verify gates; no spec theatre
+alwaysApply: true
+---
+
+# Light SDLC overlay
+
+This repository opted into `.sdlc` harness **light**.
+
+- Put change artifacts under `.sdlc/changes/<slug>/`.
+- Require `plan.md` for non-trivial diffs. `intent.md` is optional. Skip
+  `spec.md` unless published IA or a public contract changes.
+- After code changes, run the verify command already documented in `AGENTS.md`.
+- Do not add eval suites, managed hooks, or autonomous maintain loops.
+- If this overlay disagrees with stack-contract or product `AGENTS.md`, the
+  product files win.

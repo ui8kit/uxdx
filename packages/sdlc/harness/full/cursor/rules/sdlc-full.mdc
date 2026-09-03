@@ -1,0 +1,17 @@
+---
+description: Full SDLC — intent, spec, plan, verify, human merge
+alwaysApply: true
+---
+
+# Full SDLC overlay
+
+This repository opted into `.sdlc` harness **full**.
+
+- One change = `.sdlc/changes/<slug>/{intent,spec,plan}.md`.
+- Plan mode before large edits. Feedback loop = existing repo verify commands.
+- Review policy: `.sdlc/REVIEW.md`. Production stays a human gate.
+- `evals/` and `bands.yaml` are stubs until this repo already has CI/metrics.
+- Skills: `sdlc-loop`, `sdlc-feedback`, `sdlc-review`.
+- Product `AGENTS.md`, `.project/`, and stack-contract win on conflict.
+- Do not invent a second content API, product CMS schema, or local module
+  replace to ship a site.

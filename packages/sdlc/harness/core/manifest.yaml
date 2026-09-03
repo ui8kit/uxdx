@@ -1,0 +1,15 @@
+level: core
+version: 1
+copy_to: .sdlc
+cursor:
+  rules: cursor/rules
+  skills: skills
+agents_md:
+  overlay: AGENTS.md
+  merge_markers:
+    begin: "<!-- sdlc-harness:begin -->"
+    end: "<!-- sdlc-harness:end -->"
+artifacts:
+  required: [plan.md]
+  on_boundary_change: [intent.md, spec.md]
+review: REVIEW.md

@@ -1,0 +1,13 @@
+# Control bands stub. Fill only if this repo already has a queryable metric.
+# Do not invent a headless on-call agent.
+metric: ci_test_failure_rate
+baseline: rolling_30d
+rules: western_electric
+tiers:
+  1sigma:
+    action: log
+  2sigma:
+    action: diagnose
+  3sigma:
+    action: propose
+    routes: [pull_request]

@@ -1,0 +1,53 @@
+{
+  "name": "@ui8kit/uxdx",
+  "version": "0.1.0",
+  "description": "CLI to accumulate operator and developer experience packs",
+  "type": "module",
+  "bin": {
+    "uxdx": "./dist/uxdx.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ui8kit/uxdx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui8kit/uxdx/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "packages/sdlc/harness",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "cli",
+    "uxdx",
+    "sdlc",
+    "cursor",
+    "scaffold",
+    "ui8kit"
+  ],
+  "author": {
+    "name": "ui8kit",
+    "url": "https://github.com/ui8kit"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ui8kit/uxdx",
+  "scripts": {
+    "build": "bun build packages/cli/src/main.ts --outfile dist/uxdx.mjs --target node",
+    "uxdx": "bun packages/cli/src/main.ts",
+    "test": "bun test",
+    "prepack": "bun run build",
+    "prepublishOnly": "bun test && bun run build",
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

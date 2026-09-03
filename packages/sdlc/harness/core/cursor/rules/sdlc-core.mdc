@@ -1,0 +1,15 @@
+---
+description: Core SDLC — invariants, compressed spec, plan before large diffs
+alwaysApply: true
+---
+
+# Core SDLC overlay
+
+This repository opted into `.sdlc` harness **core**.
+
+- Artifacts: `.sdlc/changes/<slug>/`.
+- Boundary changes need `intent.md`, a short `spec.md`, and `plan.md`.
+- Review incoming diffs against `.sdlc/REVIEW.md`.
+- Skills `sdlc-invariants` and `sdlc-plan` apply.
+- Product `AGENTS.md` and stack-contract win on conflict.
+- No autonomous production actions. No second content API.

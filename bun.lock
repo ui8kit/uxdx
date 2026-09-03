@@ -1,0 +1,28 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "uxdx",
+    },
+    "packages/cli": {
+      "name": "@uxdx/cli",
+      "version": "0.1.0",
+    },
+    "packages/project": {
+      "name": "@uxdx/project",
+      "version": "0.1.0",
+    },
+    "packages/sdlc": {
+      "name": "@uxdx/sdlc",
+      "version": "0.1.0",
+    },
+  },
+  "packages": {
+    "@uxdx/cli": ["@uxdx/cli@workspace:packages/cli"],
+
+    "@uxdx/project": ["@uxdx/project@workspace:packages/project"],
+
+    "@uxdx/sdlc": ["@uxdx/sdlc@workspace:packages/sdlc"],
+  }
+}
