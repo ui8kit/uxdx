@@ -1,7 +1,7 @@
 <!-- sdlc-harness:begin -->
 ## SDLC harness (light)
 
-This repo uses the **light** pack from [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx).
+This repo uses the **light** pack from [`@hinddy/uxdx`](https://www.npmjs.com/package/@hinddy/uxdx).
 Working copy: `.sdlc/`. Per-change artifacts: `.sdlc/changes/<slug>/`.
 
 - Non-trivial work starts in plan mode. Commit `plan.md` before a large diff.

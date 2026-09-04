@@ -23,6 +23,32 @@ function writeIfMissing(file: string, body: string, force: boolean): void {
   writeFileSync(file, body);
 }
 
+/** Track an empty `.manual/` in git; keep operator notes untracked. */
+function ensureManualGitignore(file: string): void {
+  const block = ".manual/*\n!.manual/.gitkeep\n";
+  if (!existsSync(file)) {
+    writeFileSync(file, block);
+    return;
+  }
+  const cur = readFileSync(file, "utf8");
+  const lines = cur.split(/\r?\n/);
+  if (lines.some((l) => l.trim() === ".manual/*")) {
+    ensureLine(file, "!.manual/.gitkeep", false);
+    return;
+  }
+  const withoutFull = lines.filter((l) => l.trim() !== ".manual/");
+  const next = withoutFull.join("\n");
+  const nl = next.endsWith("\n") || next.length === 0 ? "" : "\n";
+  writeFileSync(file, `${next}${nl}${block}`);
+}
+
+function ensureManualDir(root: string): void {
+  const dir = join(root, ".manual");
+  if (existsSync(dir)) return;
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, ".gitkeep"), "");
+}
+
 export function initProject(opts: ProjectInitOpts): string[] {
   const root = opts.dir;
   mkdirSync(root, { recursive: true });
@@ -33,7 +59,7 @@ export function initProject(opts: ProjectInitOpts): string[] {
   writeIfMissing(readme, `# ${name}\n`, opts.force);
   done.push("README.md");
 
-  ensureLine(join(root, ".gitignore"), ".manual/", opts.force);
+  ensureManualGitignore(join(root, ".gitignore"));
   done.push(".gitignore");
   ensureLine(join(root, ".cursorignore"), ".manual/", opts.force);
   done.push(".cursorignore");
@@ -47,7 +73,7 @@ export function initProject(opts: ProjectInitOpts): string[] {
   );
   done.push(".project/");
 
-  mkdirSync(join(root, ".manual"), { recursive: true });
+  ensureManualDir(root);
   done.push(".manual/");
 
   if (opts.rules) {

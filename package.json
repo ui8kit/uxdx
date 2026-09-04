@@ -1,5 +1,5 @@
 {
-  "name": "@ui8kit/uxdx",
+  "name": "@hinddy/uxdx",
   "version": "0.1.1",
   "description": "CLI to accumulate operator and developer experience packs",
   "type": "module",
@@ -28,6 +28,7 @@
     "sdlc",
     "cursor",
     "scaffold",
+    "hinddy",
     "ui8kit"
   ],
   "author": {

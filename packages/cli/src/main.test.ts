@@ -32,9 +32,9 @@ describe("run", () => {
     const dir = mkdtempSync(join(tmpdir(), "uxdx-run-p-"));
     expect(run(["bun", "uxdx", "-p", "--dir", dir])).toBe(0);
     expect(existsSync(join(dir, "README.md"))).toBe(true);
-    expect(readFileSync(join(dir, ".gitignore"), "utf8")).toContain(".manual/");
+    expect(readFileSync(join(dir, ".gitignore"), "utf8")).toContain(".manual/*");
     expect(existsSync(join(dir, ".project"))).toBe(true);
-    expect(existsSync(join(dir, ".manual"))).toBe(true);
+    expect(existsSync(join(dir, ".manual", ".gitkeep"))).toBe(true);
   });
 
   test("sdlc light with --no-install", () => {

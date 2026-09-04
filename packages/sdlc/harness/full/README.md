@@ -5,7 +5,7 @@ For shipping products and high-stakes operator surfaces.
 Install:
 
 ```text
-npx @ui8kit/uxdx sdlc --level full
+npx @hinddy/uxdx sdlc --level full
 ```
 
 Solo adaptation: no MDM, no weekly committee. You still accept `spec.md` and

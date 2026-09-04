@@ -8,21 +8,21 @@ Copy-ready packs for the AI-native loop, sized for one operator. Method:
 This tree is the source of truth. Install a pack with the published CLI:
 
 ```text
-npx @ui8kit/uxdx sdlc --level light|core|full
+npx @hinddy/uxdx sdlc --level light|core|full
 ```
 
 That copies **one** pack into the target repo’s `.sdlc/` and, unless
 `--no-install`, overlays Cursor rules/skills and merges `AGENTS.md`.
 Never stack two levels. Do not copy this tree by hand.
 
-Package: [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx)
+Package: [`@hinddy/uxdx`](https://www.npmjs.com/package/@hinddy/uxdx)
 
 ## How it works
 
 ```
-@ui8kit/uxdx  packages/sdlc/harness/<level>/
+@hinddy/uxdx  packages/sdlc/harness/<level>/
         │
-        │  npx @ui8kit/uxdx sdlc --level <level>
+        │  npx @hinddy/uxdx sdlc --level <level>
         ▼
 your-repo/.sdlc/                             artifacts + overlay text
         │
@@ -34,11 +34,11 @@ your-repo/.sdlc/                             artifacts + overlay text
 ```
 
 1. Pick **full**, **core**, or **light**. Never stack two packs.
-2. Run `npx @ui8kit/uxdx sdlc --level <level>` (add `--dir` if needed).
+2. Run `npx @hinddy/uxdx sdlc --level <level>` (add `--dir` if needed).
 3. **Activate Cursor** is done by `sdlc.sh install` (default). To copy only:
 
    ```text
-   npx @ui8kit/uxdx sdlc --level <level> --no-install
+   npx @hinddy/uxdx sdlc --level <level> --no-install
    ```
 
    then overlay yourself:
@@ -70,7 +70,7 @@ before a large diff.
 ## Commands
 
 ```text
-npx @ui8kit/uxdx sdlc --level full
+npx @hinddy/uxdx sdlc --level full
 bash .sdlc/sdlc.sh install
 bash .sdlc/sdlc.sh start <slug>
 bash .sdlc/sdlc.sh status

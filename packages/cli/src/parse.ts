@@ -114,7 +114,7 @@ Usage:
   uxdx project | p | -p | --project  [init] [--dir <path>] [--rules] [--force]
   uxdx sdlc    | s | -s | --sdlc     [init] [--dir <path>] --level light|core|full [--force] [--no-install]
 
-  -p / --project   Scaffold README, ignores, and .manual/
+  -p / --project   Scaffold README, ignores, and .manual/.gitkeep if missing
   -s / --sdlc      Install an SDLC harness pack into .sdlc/
 
 Run uxdx project --help or uxdx sdlc --help for command flags.
