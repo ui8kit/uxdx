@@ -5,7 +5,7 @@ For product repos that already have a contract (`AGENTS.md`, rules, tests).
 Install:
 
 ```text
-npx @hinddy/uxdx sdlc --level light
+npx @ui8kit/uxdx sdlc --level light
 ```
 
 ## Per change

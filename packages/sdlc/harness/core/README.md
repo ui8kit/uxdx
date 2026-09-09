@@ -5,7 +5,7 @@ For kernels, shared libraries, and high blast-radius contracts.
 Install:
 
 ```text
-npx @hinddy/uxdx sdlc --level core
+npx @ui8kit/uxdx sdlc --level core
 ```
 
 ## Per change
