@@ -15,17 +15,17 @@ bunx @ui8kit/uxdx -p
 bunx @ui8kit/uxdx -s --level light
 ```
 
-Same via npm:
+Same via npm (`@ui8kit/uxdx@0.1.3` or later; `0.1.2` shims do not run Node):
 
 ```bash
-npx @ui8kit/uxdx --help
-npx @ui8kit/uxdx -p
-npx @ui8kit/uxdx -s --level light
+npx @ui8kit/uxdx@latest --help
+npx @ui8kit/uxdx@latest -- -p
+npx @ui8kit/uxdx@latest -- -s --level light
 ```
 
 `npx` may print `DEP0040` / `punycode`. That comes from npm’s Node, not this
-CLI. The command still runs if you then see `uxdx: project init` or
-`uxdx: sdlc …`.
+CLI. `--` keeps flags for `uxdx` (`npx` also has `-p`). Success still requires
+`uxdx: project init` or `uxdx: sdlc …` after the warning.
 
 After a local or global install the binary is unscoped:
 

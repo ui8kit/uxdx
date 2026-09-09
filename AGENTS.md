@@ -28,11 +28,13 @@ bun run uxdx -- -s --help
 | Install harness | `bun run uxdx -- -s --level light\|core\|full` |
 | Copy harness only | `bun run uxdx -- -s --level <level> --no-install` |
 
-Published (prefer `bunx`; `npx` may warn `punycode` from npm):
+Published. Prefer `bunx` (no npm shim). `npx` needs `@0.1.3+` (shebang) and
+`--` so `-p` is not taken by `npx`:
 
 ```bash
 bunx @ui8kit/uxdx -p
 bunx @ui8kit/uxdx -s --level light
+npx @ui8kit/uxdx@latest -- -p
 ```
 
 `-p` / `--project` / `project` and `-s` / `--sdlc` / `sdlc` are the same

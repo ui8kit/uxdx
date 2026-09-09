@@ -21,7 +21,9 @@ describe("node bin", () => {
       { encoding: "utf8" },
     );
     expect(build.status).toBe(0);
-    expect(readFileSync(outfile, "utf8")).not.toContain("__require.main");
+    const bundled = readFileSync(outfile, "utf8");
+    expect(bundled.startsWith("#!/usr/bin/env node\n")).toBe(true);
+    expect(bundled).not.toContain("__require.main");
 
     const help = spawnSync("node", [outfile, "-p", "--help"], { encoding: "utf8" });
     expect(help.status).toBe(0);
