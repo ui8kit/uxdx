@@ -1,20 +1,33 @@
 # UXDX
 
-CLI to accumulate operator and developer experience packs. One binary, two
-commands. Package name: [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx).
+CLI for operator files and SDLC harness packs. One binary (`uxdx`), two
+commands. Package: [`@ui8kit/uxdx`](https://www.npmjs.com/package/@ui8kit/uxdx).
 
-Homepage: [github.com/ui8kit/uxdx](https://github.com/ui8kit/uxdx)
+Repo: [github.com/ui8kit/uxdx](https://github.com/ui8kit/uxdx)
 
-```text
-npx @ui8kit/uxdx --help
-npx @ui8kit/uxdx project | p | -p | --project  [init] [--dir <path>] [--rules] [--force]
-npx @ui8kit/uxdx sdlc    | s | -s | --sdlc     [init] [--dir <path>] --level light|core|full [--force] [--no-install]
+## Run
+
+Prefer Bun (no Node `punycode` warning from `npx`):
+
+```bash
+bunx @ui8kit/uxdx --help
+bunx @ui8kit/uxdx -p
+bunx @ui8kit/uxdx -s --level light
 ```
 
-Same via Bun: `bunx @ui8kit/uxdx --help`.
+Same via npm:
 
-The binary is still `uxdx`. After a local or global install you can call it
-without the scope:
+```bash
+npx @ui8kit/uxdx --help
+npx @ui8kit/uxdx -p
+npx @ui8kit/uxdx -s --level light
+```
+
+`npx` may print `DEP0040` / `punycode`. That comes from npm’s Node, not this
+CLI. The command still runs if you then see `uxdx: project init` or
+`uxdx: sdlc …`.
+
+After a local or global install the binary is unscoped:
 
 ```bash
 npm i -g @ui8kit/uxdx
@@ -24,15 +37,78 @@ npm i -D @ui8kit/uxdx
 npx uxdx --help
 ```
 
-- `project` writes `README.md`, `.gitignore`, `.cursorignore`, and `.manual/`.
-- `sdlc` copies a vendored harness pack into `.sdlc/`. `--level` is required.
-- After copy, `sdlc` runs `.sdlc/sdlc.sh install` unless `--no-install`.
+## Commands
 
-## Local
+Aliases are equivalent. `init` is the default and may be omitted.
+
+```text
+uxdx [--help]
+uxdx project | p | -p | --project  [init] [--dir <path>] [--rules] [--force]
+uxdx sdlc    | s | -s | --sdlc     [init] [--dir <path>] --level light|core|full [--force] [--no-install]
+```
+
+| Flag | Command | Meaning |
+| --- | --- | --- |
+| `--dir <path>` | both | Target repo (default: cwd) |
+| `--force` | both | Overwrite files this tool owns |
+| `--rules` | `project` | Stub `.cursor/rules/uxdx.mdc` if missing |
+| `--level` | `sdlc` | Required: `light`, `core`, or `full` |
+| `--no-install` | `sdlc` | Copy `.sdlc/` only; skip `sdlc.sh install` |
+
+### `project` (`-p`)
+
+Writes the default operator layout. Existing filled files are left alone
+unless `--force`. If `.manual/` already exists, it is not touched.
+
+```bash
+bunx @ui8kit/uxdx -p
+bunx @ui8kit/uxdx -p --dir ./my-repo --rules
+```
+
+Creates or updates:
+
+- `README.md` (only if missing)
+- `.gitignore` (`.manual/*` + `!.manual/.gitkeep`)
+- `.cursorignore` (`.manual/`)
+- `.project/README.md` stub
+- `.manual/.gitkeep` (only if `.manual/` is missing)
+
+Success:
+
+```text
+uxdx: project init in <dir>
+  README.md
+  .gitignore
+  .cursorignore
+  .project/
+  .manual/
+```
+
+### `sdlc` (`-s`)
+
+Copies one vendored pack into `.sdlc/`. `--level` is required (no silent
+`full`). Then runs `.sdlc/sdlc.sh install` unless `--no-install`.
+
+```bash
+bunx @ui8kit/uxdx -s --level light
+bunx @ui8kit/uxdx -s --level core --dir ./my-repo
+bunx @ui8kit/uxdx -s --level full --no-install
+```
+
+Do not stack two levels in one repo. Use `--force` only to replace a
+different level.
+
+Pack source: `packages/sdlc/harness/`.
+
+## This checkout
 
 ```bash
 bun install
 bun test
-bun run uxdx -- --help
 bun run build
+bun run uxdx -- --help
+bun run uxdx -- -p --help
+bun run uxdx -- -s --help
 ```
+
+`--` after `bun run uxdx` is required so flags go to the CLI, not to Bun.

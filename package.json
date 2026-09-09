@@ -1,6 +1,6 @@
 {
   "name": "@ui8kit/uxdx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI to accumulate operator and developer experience packs",
   "type": "module",
   "bin": {
@@ -37,8 +37,8 @@
   "license": "MIT",
   "homepage": "https://github.com/ui8kit/uxdx",
   "scripts": {
-    "build": "bun build packages/cli/src/main.ts --outfile dist/uxdx.mjs --target node",
-    "uxdx": "bun packages/cli/src/main.ts",
+    "build": "bun build packages/cli/src/bin.ts --outfile dist/uxdx.mjs --target node",
+    "uxdx": "bun packages/cli/src/bin.ts",
     "test": "bun test",
     "prepack": "bun run build",
     "prepublishOnly": "bun test && bun run build",

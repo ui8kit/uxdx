@@ -53,7 +53,3 @@ export function run(argv: string[]): number {
     return 1;
   }
 }
-
-if (import.meta.main) {
-  process.exit(run(process.argv));
-}
